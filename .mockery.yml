@@ -1,0 +1,19 @@
+quiet: False
+with-expecter: True
+resolve-type-alias: False
+issue-845-fix: True
+mockname: "{{.InterfaceName}}"
+filename: "mock_{{.MockName}}.go"
+outpkg: "mocks"
+packages:
+  github.com/b87/go-crit/crit:
+    config:
+      dir: "crit/mocks"
+    interfaces:
+      QueryBuilder:
+      QueryExecutor:
+      DataMapper:
+      Validator:
+      CriteriaFilter:
+      CriteriaSort:
+      Repository:

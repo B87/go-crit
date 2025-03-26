@@ -1,0 +1,40 @@
+version: "3"
+
+dotenv: ['.env']
+
+tasks:
+
+  update:
+    desc: "Update all dependencies"
+    cmds:
+      - go get -u ./...
+      - go mod tidy
+
+  test:
+    desc: "Run all tests"
+    deps:
+      - mockery
+    cmds:
+      - mkdir -p ./tmp/.coverage
+      - go test -coverprofile=./tmp/.coverage/cover.out -coverpkg=./... ./...
+
+  build:
+    desc: "Build the project"
+    deps:
+      - mockery
+    cmds:
+      - go build -o ./tmp/crit
+
+  mockery:
+    desc: "Generate mocks"
+    cmds:
+      - mockery --all
+    sources:
+      - crit/**/*.go
+    generates:
+      - crit/mocks/**/*.go
+
+  run:
+    desc: "Run the project"
+    cmds:
+      - ./tmp/crit

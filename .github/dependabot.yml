@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod" # For Go modules
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "automerge"
